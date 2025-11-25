@@ -14,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Ruta de verificación de estado. Retorna el estado de la app y la conexión a la BD.
+Route::get('/health', function () {
+    $dbStatus = 'ok';
+    try {
+        \Illuminate\Support\Facades\DB::connection()->getPdo();
+    } catch (\Exception $e) {
+        $dbStatus = 'error: ' . $e->getMessage();
+    }
+
+    return response()->json([
+        'status' => 'ok',
+        'app' => config('app.name'),
+        'time' => now()->toIso8601String(),
+        'database' => $dbStatus,
+    ]);
 });
