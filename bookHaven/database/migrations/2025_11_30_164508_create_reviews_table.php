@@ -16,6 +16,18 @@ return new class extends Migration
             // Content of the review
             $table->text('content');
             $table->unsignedTinyInteger('rating');
+
+            //Relations
+            $table->foreignId('book_id')
+                ->nullable()
+                ->constrained('books')
+                ->nullOnDelete();
+
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained('users')
+                ->nullOnDelete();
+
             $table->timestamps();
         });
     }
