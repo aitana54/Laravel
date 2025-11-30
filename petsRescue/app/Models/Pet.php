@@ -21,4 +21,12 @@ class Pet extends Model
         'created_by',
         'adopted_by',
     ];
+
+    /**
+     * Usuario que ha registrado la mascota.
+     */
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }
