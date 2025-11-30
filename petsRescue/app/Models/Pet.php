@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Pet extends Model
 {
     use HasFactory;
+
+    /**
+     * Campos que se pueden asignar de forma masiva.
+     */
+    protected $fillable = [
+        'name',
+        'species',
+        'age',
+        'status',
+        'description',
+        'created_by',
+        'adopted_by',
+    ];
 }
