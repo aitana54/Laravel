@@ -17,7 +17,15 @@ class Book extends Model
         'total_pages',
         'status',
         'summary',
-        'added_by_user_id',
+        'add_by_user_id',
         'currently_reading_user_id',
     ];
+
+    // Relationship
+
+    //The user who added the book
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'add_by_user_id');
+    }
 }
