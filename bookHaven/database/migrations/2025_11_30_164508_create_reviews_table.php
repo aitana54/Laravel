@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            // Content of the review
+            $table->text('content');
+            $table->unsignedTinyInteger('rating');
             $table->timestamps();
         });
     }
