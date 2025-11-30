@@ -43,4 +43,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Mascotas creadas por este usuario.
+     */
+    public function createdPets()
+    {
+        return $this->hasMany(Pet::class, 'created_by');
+    }
 }
