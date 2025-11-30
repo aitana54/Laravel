@@ -51,4 +51,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pet::class, 'created_by');
     }
+
+    /**
+     * Mascotas adoptadas por este usuario.
+     */
+    public function adoptedPets()
+    {
+        return $this->hasMany(Pet::class, 'adopted_by');
+    }
 }
