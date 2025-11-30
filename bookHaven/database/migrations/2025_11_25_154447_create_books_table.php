@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('total_pages');
             $table->enum('status', ['available', 'reading', 'finished']);
             $table->text('summary')->nullable();
-            $table->timestamps();
 
             // Relations with users
             $table->foreignId('add_by_user_id')
@@ -30,6 +29,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('users')
                 ->nullOnDelete();
+            $table->timestamps();
         });
     }
 
