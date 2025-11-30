@@ -20,6 +20,16 @@ return new class extends Migration
             $table->enum('status', ['available', 'reading', 'finished']);
             $table->text('summary')->nullable();
             $table->timestamps();
+
+            // Relations with users
+            $table->foreignId('add_by_user_id')
+                ->nullable()
+                ->constrained('users')
+                ->nullOnDelete();
+            $table->foreignId('currently_reading_user_id')
+                ->nullable()
+                ->constrained('users')
+                ->nullOnDelete();
         });
     }
 
