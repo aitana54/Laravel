@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('author');
             $table->string('genre');
             $table->integer('total_pages');
+            $table->enum('status', ['available', 'reading', 'finished']);
+            $table->text('summary')->nullable();
             $table->timestamps();
         });
     }
