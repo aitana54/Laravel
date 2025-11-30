@@ -29,4 +29,12 @@ class Pet extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    /**
+     * Usuario que ha adoptado la mascota (si existe).
+     */
+    public function adopter()
+    {
+        return $this->belongsTo(User::class, 'adopted_by');
+    }
 }
