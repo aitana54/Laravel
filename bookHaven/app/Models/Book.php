@@ -28,4 +28,10 @@ class Book extends Model
     {
         return $this->belongsTo(User::class, 'add_by_user_id');
     }
+
+    // The user who is currently reding the book
+    public function currentReader()
+    {
+        return $this->belongsTo(User::class, 'currently_reading_user_id');
+    }
 }
