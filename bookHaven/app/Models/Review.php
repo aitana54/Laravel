@@ -16,4 +16,12 @@ class Review extends Model
         'book_id',
         'user_id',
     ];
+
+    // Relationships
+
+    // The book that the review belong to
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }
