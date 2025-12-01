@@ -34,4 +34,10 @@ class Book extends Model
     {
         return $this->belongsTo(User::class, 'currently_reading_user_id');
     }
+
+    // The reviews associated with the book
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
