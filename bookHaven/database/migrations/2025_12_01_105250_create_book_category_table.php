@@ -12,7 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('book_category', function (Blueprint $table) {
+            // No id column, pivot table with composite primary key
+            $table->foreignId('book_id')
+                ->constrained('books')
+                ->cascadeOnDelete();
 
+            $table->foreignId('category_id')
+                ->constrained('categories')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }
