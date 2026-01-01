@@ -51,11 +51,24 @@ class BookController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza un libro existente.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Book $book)
     {
-        //
+        $data = $request->only([
+            'title',
+            'author',
+            'genre',
+            'total_pages',
+            'status',
+            'summary',
+            'add_by_user_id',
+            'currently_reading_user_id',
+        ]);
+
+        $book->update($data);
+
+        return response()->json($book);
     }
 
     /**
