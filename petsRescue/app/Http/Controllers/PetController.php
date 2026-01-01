@@ -52,11 +52,22 @@ class PetController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza una mascota existente.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Pet $pet)
     {
-        //
+        $data = $request->only([
+            'name',
+            'species',
+            'age',
+            'status',
+            'description',
+            'created_by',
+            'adopted_by',
+        ]);
+
+        $pet->update($data);
+        return response()->json($pet);
     }
 
     /**
