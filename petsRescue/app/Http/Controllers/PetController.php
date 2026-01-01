@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pet;
 use Illuminate\Http\Request;
 
 class PetController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Lista todas las mascotas.
      */
     public function index()
     {
-        //
+        // Mas adelante se puede añadir paginación
+        $pets = Pet::orderBy('id', 'desc')->get();
+
+        return response()->json($pets);
     }
 
     /**
