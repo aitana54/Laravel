@@ -81,4 +81,13 @@ class CategoryController extends Controller
 
         return response()->json($book);
     }
+
+    /**
+     * Listar todos los libros de una categoría específica.
+     */
+    public function booksInCategory(Category $category)
+    {
+        $books = $category->books; // Obtener todos los libros asociados a la categoría
+        return response()->json($books);
+    }
 }
