@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Lista todas los libros.
      */
     public function index()
     {
-        //
+        // Más adelante se puede añadir paginación
+        $books = Book::ordeBy('id', 'desc')->get();
+
+        return response()->json($books);
     }
 
     /**
