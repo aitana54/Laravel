@@ -57,10 +57,18 @@ class ReviewController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminar una reseña de un libro específico.
+     * Solo el usuario que creó la reseña o el administrador pueden eliminarla.
      */
-    public function destroy(string $id)
+    public function destroy(Review $review)
     {
-        //
+        // Verifica si el usuario autenticado es el autor de la reseña
+        if ($review->user_id !== auth()->id()) {
+            return response()->json(['error' => 'No autorizado'], 403); // Error 403 si no es el autor
+        }
+
+        $review->delete();
+
+        return response()->json(null, 204); // Respuesta sin contenido (status 204)
     }
 }
