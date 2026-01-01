@@ -43,11 +43,12 @@ class PetController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra una mascota concreta.
      */
-    public function show(string $id)
+    public function show(Pet $pet)
     {
-        //
+        // Gracias al Route Model Binding, $pet llega cargada
+        return response()->json($pet);
     }
 
     /**
