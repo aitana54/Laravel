@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -63,5 +64,21 @@ class CategoryController extends Controller
         $category->delete();
 
         return response()->json(null, 204);
+    }
+
+    /**
+     * Asignar una categoría a un libro específico.
+     */
+    public function assignCategoryToBook(Request $request, Book $book)
+    {
+        // Validación de que se pase una categoría válida
+        $request->validate([
+            'category_id' => 'required|exists:categories,id', // Validar que la categoría exista en la base de datos
+        ]);
+
+        // Asignar la categoría al libro
+        $book->categories()->attach($request->category_id);
+
+        return response()->json($book);
     }
 }
