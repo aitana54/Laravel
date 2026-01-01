@@ -20,11 +20,25 @@ class BookController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Crea un nuevo libro.
      */
     public function store(Request $request)
     {
-        //
+        // Campos permitidos según el modelo Book
+        $data = $request->only([
+            'title',
+            'author',
+            'genre',
+            'total_pages',
+            'status',
+            'summary',
+            'add_by_user_id',
+            'currently_reading_user_id',
+        ]);
+
+        $book = Book::create($data);
+
+        return response()->json($book, 201);
     }
 
     /**
