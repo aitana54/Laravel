@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ReviewController;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,3 +40,7 @@ Route::get('/user', function (Request $request) {
 
 // Rutas CRUD para libros
 Route::apiResource('books', BookController::class);
+
+// Rutas para reseñas
+Route::post('books/{book}/reviews', [ReviewController::class, 'store']); //Crear reseña
+Route::delete('books/{book}/reviews/{review}', [ReviewController::class, 'destroy']); // Eliminar reseña
