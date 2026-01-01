@@ -50,10 +50,18 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminar una categoría.
+     * Solo puedes eliminar una categoría si no tiene libros asignados.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        // Verificar si la categoría tiene libros asignados
+        if ($category->books()->count() > 0) {
+            return response()->json(['error' => 'No se puede eliminar la categoría, tiene libros asignados.'], 400);
+        }
+
+        $category->delete();
+
+        return response()->json(null, 204);
     }
 }
