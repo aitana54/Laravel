@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Listar todas las categorías.
      */
     public function index()
     {
-        //
+         $categories = Category::all(); // Obtener todas las categorías
+        return response()->json($categories);
     }
 
     /**
