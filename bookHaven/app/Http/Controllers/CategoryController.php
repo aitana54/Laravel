@@ -17,11 +17,20 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Crear una nueva categoría.
      */
     public function store(Request $request)
     {
-        //
+        // Validación de los datos de la nueva categoría
+        $request->validate([
+            'name' => 'required|string|max:255', // Nombre obligatorio, con un máximo de 255 caracteres
+            'description' => 'nullable|string|max:500', // Descripción opcional, con un límite de 500 caracteres
+        ]);
+
+        // Crear la categoría
+        $category = Category::create($request->only(['name', 'description']));
+
+        return response()->json($category, 201); // Código 201 para indicar que se creó el recurso
     }
 
     /**
