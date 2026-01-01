@@ -19,11 +19,27 @@ class PetController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Crea una nueva mascota.
+     *
+     * En esta demo se hace una validación "seria";
+     * se mejorará en la demo siguiente usando FormRequests.
      */
     public function store(Request $request)
     {
-        //
+        // Campos permitidos según el modelo Pet
+        $data = $request->only([
+            'name',
+            'species',
+            'age',
+            'status',
+            'description',
+            'created_by',
+            'adopted_by',
+        ]);
+
+        $pet = Pet::create($data);
+
+        return response()->json($pet, 201);
     }
 
     /**
