@@ -71,10 +71,12 @@ class PetController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina una mascota.
      */
-    public function destroy(string $id)
+    public function destroy(Pet $pet)
     {
-        //
+        $pet->delete();
+
+        return response()->json(null, 204);
     }
 }
