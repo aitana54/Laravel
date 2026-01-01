@@ -42,11 +42,12 @@ class BookController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra un libro concreto.
      */
-    public function show(string $id)
+    public function show(Book $book)
     {
-        //
+        // Gracias al Route Model Binding, $book llega cargada
+        return response()->json($book);
     }
 
     /**
