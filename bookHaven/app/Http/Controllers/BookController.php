@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBookRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -22,21 +23,10 @@ class BookController extends Controller
     /**
      * Crea un nuevo libro.
      */
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
-        // Campos permitidos según el modelo Book
-        $data = $request->only([
-            'title',
-            'author',
-            'genre',
-            'total_pages',
-            'status',
-            'summary',
-            'add_by_user_id',
-            'currently_reading_user_id',
-        ]);
 
-        $book = Book::create($data);
+        $book = Book::create($request->validated());
 
         return response()->json($book, 201);
     }
