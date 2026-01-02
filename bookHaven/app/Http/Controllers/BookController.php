@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -43,20 +44,10 @@ class BookController extends Controller
     /**
      * Actualiza un libro existente.
      */
-    public function update(Request $request, Book $book)
+    public function update(UpdateBookRequest $request, Book $book)
     {
-        $data = $request->only([
-            'title',
-            'author',
-            'genre',
-            'total_pages',
-            'status',
-            'summary',
-            'add_by_user_id',
-            'currently_reading_user_id',
-        ]);
 
-        $book->update($data);
+        $book->update($request->validated());
 
         return response()->json($book);
     }
