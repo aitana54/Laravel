@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePetRequest;
+use App\Http\Requests\UpdatePetRequest;
 use App\Models\Pet;
 use Illuminate\Http\Request;
 
@@ -44,19 +45,11 @@ class PetController extends Controller
     /**
      * Actualiza una mascota existente.
      */
-    public function update(Request $request, Pet $pet)
+    public function update(UpdatePetRequest $request, Pet $pet)
     {
-        $data = $request->only([
-            'name',
-            'species',
-            'age',
-            'status',
-            'description',
-            'created_by',
-            'adopted_by',
-        ]);
 
-        $pet->update($data);
+        $pet->update($request->validated());
+
         return response()->json($pet);
     }
 
