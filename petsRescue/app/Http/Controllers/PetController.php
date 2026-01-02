@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePetRequest;
 use App\Models\Pet;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class PetController extends Controller
      * En esta demo se hace una validación "seria";
      * se mejorará en la demo siguiente usando FormRequests.
      */
-    public function store(Request $request)
+    public function store(StorePetRequest $request)
     {
         $pet = Pet::create($request->validate());
 
