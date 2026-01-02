@@ -28,7 +28,7 @@ class PetController extends Controller
      */
     public function store(StorePetRequest $request)
     {
-        $pet = Pet::create($request->validate());
+        $pet = Pet::create($request->validated());
 
         return response()->json($pet, 201);
     }
