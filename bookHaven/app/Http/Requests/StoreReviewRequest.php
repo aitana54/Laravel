@@ -34,7 +34,7 @@ class StoreReviewRequest extends FormRequest
     {
         return [
             'content.required' => 'El contenido de la reseña es obligatoria.',
-            'rating.required' => 'La puntuación del libro es obligatoria.',
+            'rating.required' => 'La puntuación del libro es obligatoria (1 a 5).',
 
             'user_id.exists' => 'El usuario autor de la reseña no existe.',
             'book_id.exists' => 'El libro al que se asocia la reseña no existe.',
