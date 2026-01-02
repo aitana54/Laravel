@@ -33,4 +33,12 @@ class UpdatePetRequest extends FormRequest
             'adopted_by' => ['sometimes', 'nullable', 'integer', 'exists:users,id'],
         ];
     }
+    public function messages(): array
+    {
+        return [
+            'status.in' => 'El estado debe ser: available, pending o adopted.',
+            'created_by.exists' => 'El usuario creador no existe.',
+            'adopted_by.exists' => 'El usuario adoptante no existe.',
+        ];
+    }
 }
