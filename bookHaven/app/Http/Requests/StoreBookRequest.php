@@ -33,4 +33,16 @@ class StoreBookRequest extends FormRequest
             'currently_reading_user_id' => ['nullable', 'integer', 'exists:users,id'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'El titulo del libro es obligatorio.',
+            'author.required' => 'El autor del libro es obligatorio.',
+            'total_pages.required' => 'El total de paginas del libro es obligatorio.',
+            'status.in' => 'El estado debe ser: available, reading o finished.',
+            'add_by_user_id.exists' => 'El usuario creador del libro no existe.',
+            'currently_reading_user_id.exists' => 'El usuario que está leyendo el libro no existe.',
+        ];
+    }
 }
