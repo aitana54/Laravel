@@ -11,7 +11,7 @@ class UpdatePetRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true; // Validar la autorización se verá en sesiones posteriores
     }
 
     /**
