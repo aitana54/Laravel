@@ -22,7 +22,14 @@ class StorePetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:120'],
+            'species' => ['required', 'string', 'max:50'],
+            'age' => ['nullable', 'integer', 'min:0', 'max:30'],
+            'status' => ['required', 'in:available,pending,adopted'],
+            'description' => ['nullable', 'string'],
+
+            'created_by' => ['nullable', 'integer', 'exists:users,id'],
+            'adopted_by' => ['nullable', 'integer', 'exists:users,id'],
         ];
     }
 }
