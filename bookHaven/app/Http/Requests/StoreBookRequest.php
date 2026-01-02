@@ -22,7 +22,15 @@ class StoreBookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['required', 'string', 'max:120'],
+            'author' => ['required', 'string', 'max:120'],
+            'genre' => ['required', 'string', 'max:100'],
+            'total_pages' => ['required', 'integer', 'min:49', 'max:100000'],
+            'status' => ['required', 'in:available,reading,finished'],
+            'summary' => ['nullable', 'integer', 'min:150', 'max:200'],
+
+            'add_by_user_id' => ['nullable', 'integer', 'exists:users,id'],
+            'currently_reading_user_id' => ['nullable', 'integer', 'exists:users,id'],
         ];
     }
 }
