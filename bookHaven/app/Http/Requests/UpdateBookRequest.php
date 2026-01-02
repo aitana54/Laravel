@@ -34,4 +34,13 @@ class UpdateBookRequest extends FormRequest
             'currently_reading_user_id' => ['sometimes', 'nullable', 'integer', 'exists:users,id'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'status.in' => 'El estado debe ser: available, reading o finished.',
+            'add_by_user_id.exists' => 'El usuario creador del libro no existe.',
+            'currently_reading_user_id.exists' => 'El usuario que está leyendo el libro no existe.',
+        ];
+    }
 }
