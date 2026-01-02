@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreReviewRequest;
 use App\Models\Book;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -20,24 +21,13 @@ class ReviewController extends Controller
      * Crear una reseña para un libro específico.
      * La reseña está asociada tanto al libro como al usuario.
      */
-    public function store(Request $request, Book $book)
+    public function store(StoreReviewRequest $request, Book $book)
     {
-        // Validación de los campos necesarios para la reseña
+        // Se valida el request automáticamente a través de StoreReviewRequest
+        // Usamos $request->validated() para obtener solo los datos validados
+        $review = $book->reviews()->create($request->validated() + ['user_id' => auth()->id()]);
 
-        $request->validate([
-            'content' => 'required|string|max:500',
-            'rating' => 'required|integer|min:1|max:5',
-        ]);
-
-        // Crear la reseña y asociarla al libro y al usuario autenticado
-        $review = $book->reviews()->create([
-            'user_id' => auth()->id(), // Asocia la reseña al usuario autenticado
-            'content' => $request->content,
-            'rating' => $request->rating,
-            'book_id' => $book->id, // Aquí asociamos explícitamente el libro a la reseña
-        ]);
-
-         return response()->json($review, 201); // Código 201 para indicar que se creó el recurso
+        return response()->json($review, 201); // Código 201 para indicar que se creó el recurso
     }
 
     /**
