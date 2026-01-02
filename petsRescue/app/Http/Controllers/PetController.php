@@ -26,18 +26,7 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        // Campos permitidos según el modelo Pet
-        $data = $request->only([
-            'name',
-            'species',
-            'age',
-            'status',
-            'description',
-            'created_by',
-            'adopted_by',
-        ]);
-
-        $pet = Pet::create($data);
+        $pet = Pet::create($request->validate());
 
         return response()->json($pet, 201);
     }
