@@ -29,4 +29,15 @@ class StoreReviewRequest extends FormRequest
             'book_id' => ['nullable', 'integer', 'exists:books,id'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'content.required' => 'El contenido de la reseña es obligatoria.',
+            'rating.required' => 'La puntuación del libro es obligatoria.',
+
+            'user_id.exists' => 'El usuario autor de la reseña no existe.',
+            'book_id.exists' => 'El libro al que se asocia la reseña no existe.',
+        ];
+    }
 }
