@@ -32,4 +32,15 @@ class StorePetRequest extends FormRequest
             'adopted_by' => ['nullable', 'integer', 'exists:users,id'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'El nombre es obligatorio.',
+            'species.required' => 'La especie es obligatoria.',
+            'status.in' => 'El estado debe ser: available, pending o adopted.',
+            'created_by.exists' => 'El usuario creador no existe.',
+            'adopted_by.exists' => 'El usuario adoptante no existe.',
+        ];
+    }
 }
