@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DestroyPetRequest;
 use App\Http\Requests\StorePetRequest;
 use App\Http\Requests\UpdatePetRequest;
 use App\Models\Pet;
@@ -61,8 +62,11 @@ class PetController extends Controller
     /**
      * Elimina una mascota.
      */
-    public function destroy(Pet $pet)
+    public function destroy(DestroyPetRequest $request, Pet $pet)
     {
+        // FormRequest ya bloqueó si status === adopted
+        $this->authorize('delete', $pet);
+
         $pet->delete();
 
         return response()->json(null, 204);
