@@ -11,7 +11,8 @@ class StorePetRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true; // Validar la autorización se verá en sesiones posteriores
+        // Crear requiere usuario autenticado (además del auth:sanctum en rutas)
+        return $this->user() !== null;
     }
 
     /**
