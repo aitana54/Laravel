@@ -37,7 +37,8 @@ class PetPolicy
      */
     public function update(User $user, Pet $pet): bool
     {
-        //
+        // Regla de dominio: solo el creador
+        return $pet->created_by !== null && $user->id === $pet->created_by;
     }
 
     /**
@@ -45,7 +46,8 @@ class PetPolicy
      */
     public function delete(User $user, Pet $pet): bool
     {
-        //
+        // Regla de dominio: solo el creador
+        return $pet->created_by !== null && $user->id === $pet->created_by;
     }
 
     /**
