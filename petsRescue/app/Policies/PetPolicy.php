@@ -13,7 +13,7 @@ class PetPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class PetPolicy
      */
     public function view(User $user, Pet $pet): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class PetPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
