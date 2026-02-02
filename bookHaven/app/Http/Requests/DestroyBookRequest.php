@@ -11,7 +11,11 @@ class DestroyBookRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        /** @var Book|null $book */
+        $book = $this->route('book');
+
+        // Regla de contexto: un libro finalizado no puede eliminarse
+        return $book !== null && $book->status !== 'finished';
     }
 
     /**
