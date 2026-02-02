@@ -11,7 +11,11 @@ class UpdateBookRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        /** @var Book|null $book */
+        $book = $this->route('book');
+
+        // Regla de contexto: un libro finalizado no puede editarse
+        return $book !== null && $book->status !== 'finished';
     }
 
     /**
