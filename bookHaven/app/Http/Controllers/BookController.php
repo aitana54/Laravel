@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DestroyBookRequest;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
@@ -46,7 +47,7 @@ class BookController extends Controller
      */
     public function update(UpdateBookRequest $request, Book $book)
     {
-
+        $this->authorize('update', $book);
         $book->update($request->validated());
 
         return response()->json($book);
@@ -55,8 +56,9 @@ class BookController extends Controller
     /**
      * Elimina un libro.
      */
-    public function destroy(Book $book)
+    public function destroy(DestroyBookRequest $request, Book $book)
     {
+        $this->authorize('delete', $book);
         $book->delete();
 
         return response()->json(null, 204);
