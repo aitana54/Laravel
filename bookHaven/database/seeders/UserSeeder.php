@@ -17,19 +17,19 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Aitana Creator',
-            'email' => 'creator@bookHaven.test',
+            'email' => 'creator@bookhaven.test',
             'password' => Hash::make('password123'),
         ]);
 
         User::create([
             'name' => 'Maria User',
-            'email' => 'maria@bookHaven.test',
+            'email' => 'maria@bookhaven.test',
             'password' => Hash::make('password123'),
         ]);
 
         User::create([
             'name' => 'Carla User',
-            'email' => 'carla@bookHaven.test',
+            'email' => 'carla@bookhaven.test',
             'password' => Hash::make('password123'),
         ]);
     }
