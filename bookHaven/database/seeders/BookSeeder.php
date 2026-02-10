@@ -13,7 +13,7 @@ class BookSeeder extends Seeder
      */
     public function run(): void
     {
-        User::query()->delete();
+        Book::query()->delete();
 
         $creator = User::where('email', 'creator@bookhaven.test')->first();
         $maria = User::where('email', 'maria@bookhaven.test')->first();
